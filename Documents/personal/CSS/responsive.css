@@ -1,0 +1,306 @@
+/* =========================================================
+   RESPONSIVE.CSS — Ajustes por breakpoint
+   ========================================================= */
+
+/* ---------- Tablet (≤ 1024px) ---------- */
+@media (max-width: 1024px) {
+  .services__grid,
+  .methods__grid,
+  .pricing__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pricing__grid .plan-card:last-child {
+    grid-column: span 2;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .about__media {
+    max-width: 320px;
+    margin-inline: auto;
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__panel {
+    order: -1;
+  }
+}
+
+/* ---------- Mobile large (≤ 768px) ---------- */
+@media (max-width: 768px) {
+  :root {
+    --space-3xl: 5rem;
+    --space-2xl: 3.5rem;
+  }
+
+  .nav-links,
+  .navbar__actions .btn {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .navbar.is-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: var(--space-lg) var(--container-pad);
+    gap: var(--space-md);
+  }
+
+  .hero {
+    align-items: flex-end;
+    padding-top: 5.5rem;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+
+  .about__stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .services__grid,
+  .methods__grid,
+  .pricing__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing__grid .plan-card:last-child {
+    grid-column: auto;
+  }
+
+  .plan-card--featured {
+    transform: none;
+  }
+
+  .footer__top {
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .footer__nav {
+    gap: var(--space-xl);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+}
+
+/* ---------- Mobile small (≤ 480px) ---------- */
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 1.1rem;
+  }
+
+  .hero__title {
+    line-height: 0.92;
+  }
+
+  .about__card {
+    padding: var(--space-lg);
+  }
+
+  .footer__nav {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+}
+/* =========================================================
+   REFINAMENTO RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .navbar__inner {
+    min-height: 70px;
+  }
+
+  .nav-links {
+    gap: var(--space-md);
+  }
+
+  .hero__content {
+    padding-bottom: 5rem;
+  }
+
+  .service-card {
+    min-height: 500px;
+  }
+
+  .about__card {
+    padding: clamp(2rem, 5vw, 3.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__inner {
+    min-height: 66px;
+  }
+
+  .navbar.is-open {
+    background: var(--bg);
+  }
+
+  .navbar.is-open .nav-links {
+    box-shadow: 0 24px 40px -30px rgba(0,0,0,.65);
+  }
+
+  .hero {
+    min-height: 760px;
+  }
+
+  .hero__content {
+    padding-bottom: 3.25rem;
+  }
+
+  .hero__lead {
+    max-width: 42rem;
+  }
+
+  .hero__actions {
+    gap: .75rem;
+    margin-top: var(--space-lg);
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .about__media {
+    max-width: 360px;
+    width: 100%;
+  }
+
+  .about__card {
+    padding: 1.75rem;
+  }
+
+  .about__stats {
+    gap: .75rem;
+  }
+
+  .about__stats strong {
+    font-size: 1.75rem;
+  }
+
+  .about__stats span {
+    font-size: .68rem;
+  }
+
+  .service-card {
+    min-height: 480px;
+  }
+
+  .method-card {
+    min-height: auto;
+  }
+
+  .pricing__grid {
+    padding-top: 12px;
+  }
+
+  .plan-card,
+  .plan-card--featured {
+    min-height: 0;
+  }
+
+  .plan-card:hover,
+  .plan-card--featured:hover {
+    transform: none;
+  }
+
+  .contact__panel {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 700px;
+  }
+
+  .hero__title {
+    font-size: clamp(3.2rem, 19vw, 5rem);
+  }
+
+  .hero__lead {
+    font-size: 1rem;
+  }
+
+  .marquee__track span {
+    padding-inline: 1.15rem;
+    gap: .65rem;
+    font-size: .72rem;
+  }
+
+  .about__media {
+    max-width: 100%;
+  }
+
+  .about__stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .about__stats > div {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    align-items: center;
+    column-gap: .75rem;
+  }
+
+  .about__stats strong {
+    font-size: 1.65rem;
+  }
+
+  .about__stats span {
+    margin-top: 0;
+  }
+
+  .service-card {
+    min-height: 430px;
+  }
+
+  .service-card__body {
+    padding: 1.25rem;
+  }
+
+  .plan-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .contact-channel {
+    padding: .85rem;
+  }
+
+  .contact-channel__value {
+    font-size: .95rem;
+    overflow-wrap: anywhere;
+  }
+}

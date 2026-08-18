@@ -1,0 +1,58 @@
+/* =========================================================
+   THEMES.CSS — Tema Escuro (padrão) e Tema Claro
+   ========================================================= */
+
+/* ---------- Tema Escuro (default) ---------- */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #14161a;
+  --bg-soft: #1a1d22;
+  --surface: #1d2024;
+  --surface-2: #24272c;
+  --ink: #f3f2ed;
+  --ink-muted: #9ba0a6;
+  --line: rgba(243, 242, 237, 0.09);
+  --line-strong: rgba(243, 242, 237, 0.16);
+
+  --accent: #ff4b2b;
+  --accent-ink: #fff5f2;
+  --accent-2: #d9a441;
+  --plate: #2c3036;
+
+  --nav-bg: rgba(20, 22, 26, 0.72);
+  --card-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- Tema Claro ---------- */
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f3f1ec;
+  --bg-soft: #ece8e0;
+  --surface: #ffffff;
+  --surface-2: #edeae2;
+  --ink: #17181b;
+  --ink-muted: #5c6066;
+  --line: rgba(23, 24, 27, 0.09);
+  --line-strong: rgba(23, 24, 27, 0.16);
+
+  --accent: #e0431f;
+  --accent-ink: #ffffff;
+  --accent-2: #b9862a;
+  --plate: #e2ddd2;
+
+  --nav-bg: rgba(243, 241, 236, 0.78);
+  --card-shadow: 0 20px 45px -22px rgba(23, 24, 27, 0.25);
+}
+
+/* Transição suave ao alternar tema */
+body,
+.navbar,
+.card,
+.btn,
+.plan-card,
+.service-card {
+  transition: background-color var(--dur-med) var(--ease),
+              border-color var(--dur-med) var(--ease),
+              color var(--dur-med) var(--ease);
+}
