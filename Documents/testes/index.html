@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORJ3D Impressão 3D e produtos personalizados</title>
+    <meta name="description" content="Impressão 3D sob medida: do suporte que faltava na sua mesa ao objeto que só existe na sua cabeça. Você escolhe, a gente imprime.">
+    <link rel="icon" type="image/svg+xml" href="IMG/logo/Logo.svg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FORJ3D — Ideias que ganham forma">
+    <meta property="og:description" content="Impressão 3D sob medida: do suporte que faltava na sua mesa ao objeto que só existe na sua cabeça. Você escolhe, a gente imprime.">
+    <meta property="og:image" content="IMG/banner-forj3d.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/watermark.css">
+    <link rel="stylesheet" href="CSS/nav-mobile.css">
+    <link rel="stylesheet" href="CSS/nav-pill.css">
+    <link rel="stylesheet" href="CSS/cart.css">
+    <link rel="stylesheet" href="CSS/whatsapp-float.css">
+    <link rel="stylesheet" href="CSS/instagram-float.css">
+    <link rel="stylesheet" href="CSS/hero-fluid-viewer.css">
+    <link rel="stylesheet" href="CSS/charizard-fluid-viewer.css">
+    <link rel="stylesheet" href="CSS/cookie-consent.css">
+    <link rel="stylesheet" href="CSS/page-transition.css">
+    <link rel="stylesheet" href="CSS/liquid-glass.css">
+    <link rel="stylesheet" href="CSS/liquid-metal-button.css">
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="page-transition" id="pageTransition" aria-hidden="true">
+      <span class="ptb ptb-a"></span>
+      <span class="ptb ptb-b"></span>
+    </div>
+    <script>
+      // roda antes de qualquer outro script — evita "piscar" a página nova
+      // sem a cobertura, quando se chega aqui vindo de uma transição.
+      (function () {
+        try {
+          if (sessionStorage.getItem('forj3d_transition') === '1') {
+            document.getElementById('pageTransition').classList.add('is-covered');
+          }
+        } catch (e) { /* sem sessionStorage disponível — segue normal */ }
+      })();
+    </script>
+
+    <div class="watermark-overlay" aria-hidden="true"></div>
+
+    <header id="site-header">
+
+      <div class="wrap">
+
+        <nav>
+
+          <div class="logo display">
+            <a href="#top">
+              <img src="IMG/logo/Logo_Texto-navbar.png" alt="FORJ3D" class="logo-img">
+            </a>
+          </div>
+
+          <div class="navlinks pill-nav" data-pill-group="index-nav">
+            <a href="#top" class="pill-link active" data-pill="home">
+              <span class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 11.5 12 4l8 7.5"/>
+                  <path d="M6 10v9a1 1 0 0 0 1 1h3v-6h4v6h3a1 1 0 0 0 1-1v-9"/>
+                </svg>
+              </span>
+              <span class="pill-label">Home</span>
+            </a>
+            <a href="#sobre" class="pill-link" data-pill="sobre">
+              <span class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <line x1="12" y1="11" x2="12" y2="16"/>
+                  <line x1="12" y1="7.5" x2="12" y2="7.51"/>
+                </svg>
+              </span>
+              <span class="pill-label">Sobre</span>
+            </a>
+            <a href="#produtos" class="pill-link" data-pill="produtos">
+              <span class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/>
+                  <path d="M3 8l9 5 9-5"/>
+                  <path d="M12 13v8"/>
+                </svg>
+              </span>
+              <span class="pill-label">Produtos</span>
+            </a>
+            <a href="#contato" class="pill-link" data-pill="contato">
+              <span class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5" width="18" height="14" rx="2"/>
+                  <path d="m3 7 9 6 9-6"/>
+                </svg>
+              </span>
+              <span class="pill-label">Contato</span>
+            </a>
+          </div>
+
+          <div class="nav-actions">
+
+            <a class="btn btn-accent" href="https://wa.me/5527997941766" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18a7.9 7.9 0 0 1-4.05-1.11l-.29-.17-3.03.79.81-2.95-.19-.3A7.95 7.95 0 1 1 12 20Zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4-.14 0-.3-.02-.46-.02-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/>
+              </svg>
+
+              <span class="btn-label">
+                Falar no WhatsApp
+              </span>
+
+            </a>
+
+            <button type="button" class="cart-trigger" data-cart-open aria-label="Abrir carrinho">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.8h8.2a2 2 0 0 0 2-1.6L21 8H6"/>
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="18" cy="21" r="1"/>
+              </svg>
+              <span class="cart-badge" hidden>0</span>
+            </button>
+
+            <button type="button" class="navlinks-mobile-btn" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+              <svg class="ic-burger" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+
+              <svg class="ic-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M6 6l12 12M18 6L6 18"/>
+              </svg>
+            </button>
+
+          </div>
+
+        </nav>
+
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="wrap mobile-menu-links pill-nav" data-pill-group="index-nav">
+          <a href="#top" class="pill-link active" data-pill="home">
+            <span class="pill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 11.5 12 4l8 7.5"/>
+                <path d="M6 10v9a1 1 0 0 0 1 1h3v-6h4v6h3a1 1 0 0 0 1-1v-9"/>
+              </svg>
+            </span>
+            <span class="pill-label">Home</span>
+          </a>
+          <a href="#sobre" class="pill-link" data-pill="sobre">
+            <span class="pill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <line x1="12" y1="11" x2="12" y2="16"/>
+                <line x1="12" y1="7.5" x2="12" y2="7.51"/>
+              </svg>
+            </span>
+            <span class="pill-label">Sobre</span>
+          </a>
+          <a href="#produtos" class="pill-link" data-pill="produtos">
+            <span class="pill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/>
+                <path d="M3 8l9 5 9-5"/>
+                <path d="M12 13v8"/>
+              </svg>
+            </span>
+            <span class="pill-label">Produtos</span>
+          </a>
+          <a href="#contato" class="pill-link" data-pill="contato">
+            <span class="pill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <path d="m3 7 9 6 9-6"/>
+              </svg>
+            </span>
+            <span class="pill-label">Contato</span>
+          </a>
+        </div>
+
+      </div>
+
+    </header>
+
+    <section class="hero" id="top">
+
+      <div class="hero-atmosphere" aria-hidden="true"></div>
+
+      <div class="wrap hero-inner">
+
+        <div class="hero-copy">
+          <img src="IMG/logo/Logo.png" alt="FORJ3D" class="section-icon">
+
+          <h1 class="hero-title display">
+            Sua ideia,
+            <span class="stroke">
+              camada
+            </span>
+            por camada, até virar produto.
+          </h1>
+
+          <p class="hero-sub">
+            Fabricamos e personalizamos peças em impressão 3D, do suporte que faltava na sua mesa ao objeto que só existe na sua cabeça. Você escolhe, a gente imprime.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#produtos" class="btn btn-accent">Ver produtos</a>
+            <a href="https://wa.me/5527997941766" target="_blank" rel="noopener" class="btn btn-outline">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/>
+              </svg>
+              Chamar no WhatsApp
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-visual">
+
+          <div class="hero-fluid" id="heroFluid">
+            <canvas id="heroFluidCanvas"></canvas>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="sobre" id="sobre">
+
+      <div class="wrap sobre-grid">
+
+        <div class="sobre-visual reveal">
+
+          <div class="charizard-fluid" id="charizardFluid">
+            <canvas id="charizardFluidCanvas"></canvas>
+            <div class="charizard-hint" id="charizardHint">
+              <svg class="charizard-hint-icon" viewBox="0 0 64 64" width="64" height="64" fill="none" aria-hidden="true">
+                <path d="M36.6 4.4 A28 28 0 0 1 58.2 22.2" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                <path d="M58.2 22.2 L49.2 16.2 M58.2 22.2 L51.2 30.2" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M27.4 59.6 A28 28 0 0 1 5.8 41.8" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                <path d="M5.8 41.8 L14.8 47.8 M5.8 41.8 L12.8 33.8" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="charizard-hint-text">360°</span>
+            </div>
+
+            <!-- Ajuste o caminho/extensão se o arquivo não for esse -->
+            <img
+              class="charizard-compare-image"
+              id="charizardCompareImage"
+              src="GLB/desenho-charizard.png"
+              alt="Desenho do Charizard"
+              draggable="false"
+            >
+
+            <div
+              class="charizard-compare-handle"
+              id="charizardCompareHandle"
+              role="slider"
+              aria-label="Comparar desenho com modelo 3D"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="100"
+              tabindex="0"
+            >
+              <span class="charizard-compare-line"></span>
+              <span class="charizard-compare-grip">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 6 3 12 9 18"/>
+                  <polyline points="15 6 21 12 15 18"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="reveal">
+          <span class="section-tag mono">quem somos</span>
+
+          <h2 class="section-title display">
+            Produção própria, do desenho ao objeto final.
+          </h2>
+
+          <p>
+            Somos um ateliê de impressão 3D focado em peças personalizadas: produtos práticos para o dia a dia, itens de decoração e peças sob encomenda desenhadas junto com você.
+          </p>
+
+          <p>
+            Cada peça sai da nossa própria produção, sem intermediários, o que garante prazo, qualidade e um preço justo do início ao fim.
+          </p>
+          
+          <div class="chips">
+
+            <div class="chip reveal">
+              <span class="ic"></span>
+              Produção própria
+            </div>
+
+            <div class="chip reveal">
+              <span class="ic"></span>
+              Personalização total
+            </div>
+
+            <div class="chip reveal">
+              <span class="ic"></span>
+              Impressão de qualidade
+            </div>
+
+            <div class="chip reveal">
+              <span class="ic"></span>
+              Atendimento pelo WhatsApp
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="produtos">
+
+      <div class="wrap">
+
+        <div class="produtos-head-row reveal">
+
+<div class="hero-copy">
+          <img src="IMG/logo/Logo.png" alt="FORJ3D" class="section-icon">
+            <span class="section-tag mono">
+              vitrine
+            </span>
+          </div>
+
+          <div class="carousel-controls">
+
+            <div class="cbtn" id="prevBtn" aria-label="Anterior" role="button" tabindex="0">
+
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+
+            </div>
+
+            <div class="cbtn" id="nextBtn" aria-label="Próximo" role="button" tabindex="0">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="carousel reveal" id="carousel" aria-label="Produtos em destaque"></div>
+
+        <div class="ver-todos reveal">
+          <a href="produtos.html" class="btn btn-outline js-bubble-transition">Ver todos os produtos</a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="contato">
+
+      <div class="wrap">
+
+        <div class="cta-strip reveal">
+
+          <div class="cta-strip-grid">
+
+            <div class="cta-info">
+
+              <img src="IMG/logo/Logo.png" alt="FORJ3D" class="section-icons">
+
+              <h3>
+                Tem uma ideia em mente?
+              </h3>
+
+              <p>
+                Conta pra gente pelo WhatsApp e a transformamos em objeto.
+              </p>
+
+            </div>
+
+            <button type="button" class="btn btn-accent cta-mobile-trigger" id="ctaMobileTrigger">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/>
+              </svg>
+              Fazer pedido personalizado
+            </button>
+
+            <div class="cta-form-modal" id="ctaFormModal">
+              <div class="cta-form-modal-inner">
+
+                <button type="button" class="modal-close" id="ctaFormModalClose" aria-label="Fechar">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6 6 18M6 6l12 12"/>
+                  </svg>
+                </button>
+
+                <form class="cta-form" id="contatoForm">
+
+                  <div class="cta-form-row">
+                    <div class="field">
+                      <label for="cf-nome">Nome</label>
+                      <input type="text" id="cf-nome" name="nome" placeholder="Seu nome" autocomplete="given-name" required>
+                    </div>
+                    <div class="field">
+                      <label for="cf-sobrenome">Sobrenome</label>
+                      <input type="text" id="cf-sobrenome" name="sobrenome" placeholder="Seu sobrenome" autocomplete="family-name" required>
+                    </div>
+                  </div>
+
+                  <div class="cta-form-row">
+                    <div class="field">
+                      <label for="cf-telefone">Telefone</label>
+                      <input type="tel" id="cf-telefone" name="telefone" placeholder="(00) 00000-0000" autocomplete="tel" required>
+                    </div>
+                    <div class="field">
+                      <label for="cf-email">E-mail</label>
+                      <input type="email" id="cf-email" name="email" placeholder="voce@email.com" autocomplete="email" required>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="cf-descricao">Descrição da montagem do produto</label>
+                    <textarea id="cf-descricao" name="descricao" rows="4" placeholder="Conte como você imagina a peça: tamanho, cor, referência..." required></textarea>
+                  </div>
+
+                  <label class="cta-form-consent">
+                    <input type="checkbox" id="cf-consent" name="consentimento" required>
+                    <span>
+                      Li e concordo com a <a href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>, e autorizo o envio dos meus dados via WhatsApp para contato da FORJ3D.
+                    </span>
+                  </label>
+
+                  <button type="submit" class="cta-form-submit">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Z"/>
+                    </svg>
+                    Enviar pedido
+                  </button>
+
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <footer>
+
+      <div class="wrap">
+
+        <div class="footer-top">
+
+          <div class="footer-brand">
+
+            <div class="footer-logo display">
+              <a href="#top">
+                <img src="IMG/logo/Logo_Texto.png" alt="FORJ3D" class="footer-logo-img">
+              </a>
+            </div>
+
+            <p class="footer-tagline">
+              Impressão 3D que transforma ideias em produtos, feitos sob encomenda.
+            </p>
+
+            <div class="footer-social">
+              <a href="https://wa.me/5527997941766" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18a7.9 7.9 0 0 1-4.05-1.11l-.29-.17-3.03.79.81-2.95-.19-.3A7.95 7.95 0 1 1 12 20Zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4-.14 0-.3-.02-.46-.02-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/>
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/forj_3d/" target="_blank" rel="noopener" aria-label="Instagram do FORJ3D">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="3" width="18" height="18" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.2" cy="6.8" r="1"/>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+          <div class="footer-col">
+            <h4>Navegação</h4>
+            <ul>
+              <li><a href="#top">Home</a></li>
+              <li><a href="#sobre">Sobre</a></li>
+              <li><a href="#produtos">Produtos</a></li>
+              <li><a href="#contato">Contato</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Categorias</h4>
+            <ul>
+              <li><a href="produtos.html?categoria=Decoração">Decoração</a></li>
+              <li><a href="produtos.html?categoria=Colecionáveis">Colecionáveis</a></li>
+              <li><a href="produtos.html?categoria=Utilidades">Utilidades</a></li>
+              <li><a href="produtos.html?categoria=Organizadores">Organizadores</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contato</h4>
+            <ul>
+              <li><a href="https://wa.me/5527997941766" target="_blank" rel="noopener">(27) 99794-1766</a></li>
+              <li><a href="https://www.instagram.com/forj_3d/" target="_blank" rel="noopener">@forj_3d</a></li>
+              <li><a href="privacidade.html">Política de Privacidade</a></li>
+              <li><a href="privacidade.html" onclick="window.forj3dOpenCookiePrefs && window.forj3dOpenCookiePrefs(); return false;">Preferências de cookies</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="foot-bottom">
+          <span>© 2026 FORJ3D. Todos os direitos reservados.</span>
+          <span>Feito com impressão 3D e café.</span>
+        </div>
+
+      </div>
+
+    </footer>
+
+    <script type="module" src="JS/hero-fluid-viewer.js"></script>
+    <script type="module" src="JS/charizard-fluid-viewer.js"></script>
+    <script src="JS/charizard-compare-slider.js"></script>
+    <script src="JS/nav-mobile.js"></script>
+    <script src="JS/nav-pill.js"></script>
+    <script src="JS/liquid-metal-button.js"></script>
+    <script src="JS/products-data.js"></script>
+    <script src="JS/products-catalog.js"></script>
+    <script src="JS/cookie-consent.js"></script>
+    <script src="JS/cart.js"></script>
+    <script src="JS/index.js"></script>
+    <script src="JS/products-effects.js"></script>
+    <script src="JS/whatsapp-float.js"></script>
+    <script src="JS/instagram-float.js"></script>
+    <script src="JS/page-transition.js"></script>
+
+  </body>
+
+</html>

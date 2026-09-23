@@ -1,0 +1,123 @@
+/* ===== "Quem somos" — visualizador 3D (Charizard) =====
+   Sem caixa, sem fundo, sem proporção fixa: o componente só ocupa o
+   espaço do elemento pai — na página fica só o modelo, nada de cartão
+   ou moldura ao redor dele. */
+.charizard-fluid {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.charizard-fluid canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.charizard-fluid canvas:active {
+  cursor: grabbing;
+}
+
+.charizard-hint {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.charizard-hint.charizard-hint-hidden {
+  opacity: 0;
+}
+
+.charizard-hint-icon {
+  width: 40px;
+  height: 40px;
+  color: rgba(255, 255, 255, 0.7);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  animation: charizard-hint-swing 2.6s ease-in-out infinite;
+}
+
+.charizard-hint-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@keyframes charizard-hint-swing {
+  0%, 100% { transform: rotate(-14deg); }
+  50% { transform: rotate(14deg); }
+}
+
+/* ---------- barra de comparação: desenho x modelo 3D ---------- */
+.charizard-compare-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* nunca corta o desenho, só encaixa inteiro */
+  background: #fff;    /* combina com o fundo branco do próprio desenho */
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  clip-path: inset(0 0% 0 0); /* começa 100% visível (mesmo valor inicial do JS) */
+}
+
+.charizard-compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%; /* começa encostada na direita, junto com a imagem 100% visível */
+  width: 44px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ew-resize;
+  touch-action: none; /* impede rolar a página ao arrastar a barra */
+  z-index: 3;
+}
+
+.charizard-compare-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.charizard-compare-grip {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(20, 22, 27, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.charizard-compare-handle:active .charizard-compare-grip {
+  transform: scale(0.94);
+}

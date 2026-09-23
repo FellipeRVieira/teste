@@ -1,0 +1,127 @@
+/* ---------- NAVBAR EM PÍLULA ---------- */
+
+@keyframes pillNavIn {
+  from { transform: scale(.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* offset do header sticky nos links âncora */
+#top,
+#sobre,
+#produtos,
+#contato,
+#catalogo {
+  scroll-margin-top: var(--header-scroll-offset, 100px);
+}
+
+/* ---------- desktop (cápsula horizontal) ---------- */
+.navlinks.pill-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(10, 10, 10, 0.06);
+  animation: pillNavIn .4s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+.pill-nav .pill-link {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: transparent;
+  white-space: nowrap;
+  transition: background-color .2s ease, color .2s ease, gap .2s ease, transform .15s ease;
+}
+
+.pill-nav .pill-link::after {
+  content: none;
+}
+
+.pill-nav .pill-link:hover {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.pill-nav .pill-link:active {
+  transform: scale(.96);
+}
+
+.pill-nav .pill-link.active {
+  background: rgba(0, 229, 255, .12);
+  color: var(--accent-ink);
+  gap: 8px;
+}
+
+.pill-nav .pill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.pill-nav .pill-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.pill-nav .pill-label {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-width .35s cubic-bezier(.34, 1.56, .64, 1), opacity .2s ease;
+}
+
+.pill-nav .pill-link.active .pill-label {
+  max-width: 140px;
+  opacity: 1;
+}
+
+/* ---------- mobile (lista vertical dentro do painel hambúrguer) ---------- */
+.mobile-menu-links.pill-nav {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 4px 20px 18px;
+}
+
+.mobile-menu-links.pill-nav .pill-link {
+  justify-content: flex-start;
+  gap: 10px;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.mobile-menu-links.pill-nav .pill-link .pill-label {
+  max-width: none;
+  opacity: 1;
+  overflow: visible;
+}
+
+.mobile-menu-links.pill-nav .pill-link.active {
+  background: rgba(0, 229, 255, .12);
+  border-color: transparent;
+  color: var(--accent-ink);
+}
+
+/* cápsula desktop escondida no mobile */
+@media (max-width: 880px) {
+  .navlinks.pill-nav {
+    display: none;
+  }
+}

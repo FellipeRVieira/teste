@@ -1,0 +1,56 @@
+/* Orçamento — lista de limites por categoria com destaque de excedente */
+.budget-manage-list {
+  padding: 6px 20px 20px; display: flex; flex-direction: column; gap: 14px;
+}
+.budget-manage-row {
+  padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+}
+.budget-manage-row.over-limit { border-color: var(--danger); background: #fff5f5; }
+.budget-manage-row.near-limit { border-color: var(--warning); background: #fffaf0; }
+.near-limit-badge { color: #b9791f; font-size: 8.5px; font-weight: 750; }
+.budget-manage-row-footer {
+  display: flex; justify-content: space-between; align-items: center; margin-top: 9px;
+}
+.muted-note { color: var(--muted); font-size: 8.5px; }
+.over-limit-badge { color: var(--danger); font-size: 8.5px; font-weight: 750; }
+.over-limit-note { margin: 0 20px 18px; color: var(--danger); font-size: 10px; font-weight: 650; }
+.near-limit-note { margin: 0 20px 18px; color: #b9791f; font-size: 10px; font-weight: 650; }
+.negative { color: var(--danger); }
+
+/* Metas — lista de gestão completa */
+.goal-manage-list { padding: 6px 20px 20px; display: flex; flex-direction: column; gap: 14px; }
+.goal-manage-row {
+  display: grid; grid-template-columns: 34px 1fr 46px auto; gap: 12px; align-items: center;
+  padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+}
+.goal-manage-row.completed { background: var(--primary-soft); border-color: var(--primary); }
+.goal-manage-main { min-width: 0; }
+.goal-manage-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.goal-manage-top strong { font-size: 11px; }
+.goal-manage-main small { display: block; color: var(--muted); font-size: 9px; margin-bottom: 6px; }
+
+.status-badge {
+  font-size: 7.5px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 999px; white-space: nowrap;
+}
+.status-badge.active { background: var(--primary-soft); color: var(--primary); }
+.status-badge.paused { background: #f1f1f4; color: var(--muted); }
+.status-badge.completed { background: #e4f8ef; color: #14804a; }
+
+/* Alertas */
+.alert-list { padding: 6px 20px 20px; display: flex; flex-direction: column; gap: 12px; }
+.alert-row {
+  display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: flex-start;
+  padding: 13px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface);
+}
+.alert-row strong { font-size: 11px; }
+.alert-row p { margin: 3px 0 0; color: var(--muted); font-size: 9.5px; }
+.alert-icon { font-size: 15px; line-height: 1; }
+.alert-row.high { border-color: var(--danger); background: #fff5f5; }
+.alert-row.medium { border-color: #f2c46b; background: #fffaf0; }
+.alert-row.success { border-color: #7cd6a6; background: #f0fbf5; }
+
+@media (max-width: 620px) {
+  .goal-manage-row { grid-template-columns: 30px 1fr; }
+  .goal-percent { display: none; }
+}

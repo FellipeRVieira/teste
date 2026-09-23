@@ -1,0 +1,74 @@
+/* =========================================================
+   FORJ3D — Botão flutuante de WhatsApp
+   Compartilhado entre index.html e produtos.html.
+========================================================= */
+
+.wa-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px;
+  border-radius: 999px;
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(37, 211, 102, .35);
+
+  opacity: 0;
+  transform: translateY(16px) scale(.9);
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease, box-shadow .2s ease;
+}
+
+.wa-float.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.wa-float:hover {
+  box-shadow: 0 16px 34px rgba(37, 211, 102, .45);
+  transform: translateY(-2px) scale(1);
+}
+
+.wa-float svg {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+}
+
+.wa-float-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width .3s ease, opacity .2s ease;
+}
+
+.wa-float:hover .wa-float-label,
+.wa-float:focus-visible .wa-float-label {
+  max-width: 160px;
+  opacity: 1;
+  margin-right: 2px;
+}
+
+@media (max-width: 640px) {
+  .wa-float {
+    right: 14px;
+    bottom: 14px;
+    padding: 13px;
+  }
+  /* no touch não faz sentido depender de hover pra mostrar o texto */
+  .wa-float-label {
+    display: none;
+  }
+}

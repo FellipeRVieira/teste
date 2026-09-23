@@ -1,0 +1,227 @@
+/* ---------- LIQUID METAL — botões do site ---------- */
+
+@property --lm-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes lm-border-spin {
+  to { --lm-angle: 360deg; }
+}
+
+@keyframes lm-ripple-pop {
+  from { transform: translate(-50%, -50%) scale(0); opacity: .65; }
+  to   { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* ---------- mecânica compartilhada: borda animada + ripple ---------- */
+.btn,
+.cta-form-submit,
+.cookie-accept,
+.cookie-reject,
+.cbtn,
+.cart-trigger,
+.cart-close,
+.navlinks-mobile-btn,
+.qty-btn,
+.modal-close,
+.search-clear,
+.filter-btn,
+.thumb,
+.card-cta {
+  position: relative;
+  --lm-angle: 0deg;
+  border: 2px solid transparent !important;
+  background:
+    var(--lm-fill) padding-box,
+    var(--lm-ring) border-box !important;
+  animation: lm-border-spin var(--lm-ring-speed, 4s) linear infinite;
+}
+
+.btn:hover,
+.cta-form-submit:hover,
+.cookie-accept:hover,
+.cookie-reject:hover,
+.cbtn:hover,
+.cart-trigger:hover,
+.cart-close:hover,
+.navlinks-mobile-btn:hover,
+.qty-btn:hover,
+.modal-close:hover,
+.search-clear:hover,
+.filter-btn:hover,
+.thumb:hover,
+.card-cta:hover {
+  animation-duration: var(--lm-ring-speed-fast, 1.8s);
+}
+
+/* camada do ripple de clique */
+.lm-ripple-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.lm-ripple {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--lm-ripple-color, rgba(255,255,255,.55)) 0%, rgba(255,255,255,0) 72%);
+  animation: lm-ripple-pop .6s ease-out forwards;
+}
+
+/* ---------- grupo 1: CTAs principais (pílula ciano) ---------- */
+.btn-accent,
+.cta-form-submit,
+.cookie-accept,
+.filter-btn.active,
+.card:hover .card-cta {
+  --lm-fill: linear-gradient(180deg, #3ff0ff 0%, #00c2dd 45%, #007c92 100%);
+  --lm-ring: conic-gradient(from var(--lm-angle),
+    rgba(255, 255, 255, .18) 0deg,
+    rgba(255, 255, 255, .18) 260deg,
+    rgba(255, 255, 255, .55) 300deg,
+    #ffffff 328deg,
+    rgba(255, 255, 255, .55) 350deg,
+    rgba(255, 255, 255, .18) 360deg);
+  --lm-ripple-color: rgba(255, 255, 255, .6);
+
+  color: #fff !important;
+  box-shadow:
+    0 16px 10px -8px rgba(0, 168, 191, .1),
+    0 7px 8px -4px rgba(0, 168, 191, .16),
+    0 2px 4px 0 rgba(0, 0, 0, .2) !important;
+  transform: translateY(0) scale(1);
+  transition:
+    transform .2s cubic-bezier(.34, 1.56, .64, 1),
+    box-shadow .2s ease !important;
+}
+
+.btn-accent:hover,
+.cta-form-submit:hover,
+.cookie-accept:hover,
+.filter-btn.active:hover {
+  color: #fff !important;
+  transform: translateY(-2px) scale(1);
+  box-shadow:
+    0 12px 20px -10px rgba(0, 168, 191, .45),
+    0 4px 10px -4px rgba(0, 168, 191, .3),
+    0 1px 2px 0 rgba(0, 0, 0, .22) !important;
+}
+
+/* ---------- grupo 2: secundários / ícones (pílula prateada) ---------- */
+.btn-outline,
+.btn-ghost,
+.cbtn,
+.cart-trigger,
+.cart-close,
+.navlinks-mobile-btn,
+.qty-btn,
+.modal-close,
+.search-clear,
+.filter-btn:not(.active),
+.thumb,
+.cookie-reject,
+.card-cta {
+  --lm-fill: linear-gradient(180deg, #ffffff 0%, #f1f2f4 55%, #e3e6e9 100%);
+  --lm-ring: conic-gradient(from var(--lm-angle),
+    rgba(20, 20, 20, .12) 0deg,
+    rgba(20, 20, 20, .12) 260deg,
+    rgba(0, 229, 255, .55) 300deg,
+    #00e5ff 328deg,
+    rgba(0, 229, 255, .55) 350deg,
+    rgba(20, 20, 20, .12) 360deg);
+  --lm-ripple-color: rgba(0, 168, 191, .3);
+
+  color: var(--ink) !important;
+  box-shadow:
+    0 8px 5px -4px rgba(20, 20, 20, .05),
+    0 3px 3px 0 rgba(20, 20, 20, .06) !important;
+  transform: translateY(0) scale(1);
+  transition:
+    transform .2s cubic-bezier(.34, 1.56, .64, 1),
+    box-shadow .2s ease !important;
+}
+
+.btn-outline:hover,
+.btn-ghost:hover,
+.cbtn:hover,
+.cart-trigger:hover,
+.cart-close:hover,
+.navlinks-mobile-btn:hover,
+.qty-btn:hover,
+.modal-close:hover,
+.search-clear:hover,
+.filter-btn:not(.active):hover,
+.thumb:hover,
+.cookie-reject:hover {
+  color: var(--ink) !important;
+  transform: translateY(-1px) scale(1);
+  box-shadow:
+    0 10px 20px -14px rgba(0, 168, 191, .4) !important;
+}
+
+/* ---------- estado pressionado ---------- */
+.btn:active,
+.cta-form-submit:active,
+.cookie-accept:active,
+.cookie-reject:active,
+.cbtn:active,
+.cart-trigger:active,
+.cart-close:active,
+.navlinks-mobile-btn:active,
+.qty-btn:active,
+.modal-close:active,
+.search-clear:active,
+.filter-btn:active,
+.thumb:active,
+.card-cta:active {
+  transform: translateY(1px) scale(.96) !important;
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, .3),
+    inset 0 1px 2px rgba(0, 0, 0, .2) !important;
+}
+
+/* ---------- responsivo: mobile ---------- */
+@media (max-width: 640px) {
+  .btn,
+  .cta-form-submit,
+  .cookie-accept,
+  .cookie-reject {
+    min-height: 44px;
+  }
+
+  .cart-trigger,
+  .cart-close,
+  .navlinks-mobile-btn,
+  .cbtn,
+  .modal-close,
+  .qty-btn {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+
+/* ---------- acessibilidade: reduzir movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .cta-form-submit,
+  .cookie-accept,
+  .cookie-reject,
+  .cbtn,
+  .cart-trigger,
+  .cart-close,
+  .navlinks-mobile-btn,
+  .qty-btn,
+  .modal-close,
+  .search-clear,
+  .filter-btn,
+  .thumb,
+  .card-cta {
+    animation: none;
+  }
+}

@@ -1,0 +1,78 @@
+/* =========================================================
+   TRANSIÇÃO DE PÁGINA — faixa líquida de tela cheia
+   Usada só no botão "Ver todos os produtos" (classe
+   .js-bubble-transition, ver JS/page-transition.js).
+
+   Como o site não é uma SPA (cada página recarrega de
+   verdade), o movimento é contínuo num único sentido (sobe
+   e sai por cima): a página de saída toca só a primeira
+   metade (entra e cobre 100% da tela), a página de chegada
+   já nasce coberta e toca a segunda metade (continua
+   subindo e sai, revelando o conteúdo). As duas metades
+   ficam sincronizadas por um flag no sessionStorage.
+   ========================================================= */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.page-transition .ptb {
+  position: absolute;
+  left: -10vw;
+  top: 100vh; /* escondida abaixo da tela */
+  width: 120vw;
+  height: 140vh;
+  border-radius: 50% / 8%;
+  background: var(--accent);
+}
+
+.page-transition .ptb-b {
+  background: var(--deep);
+}
+
+.page-transition.is-covering,
+.page-transition.is-covered {
+  pointer-events: auto;
+}
+
+/* ---------- cobrindo (página de saída) ---------- */
+.page-transition.is-covering .ptb-a {
+  animation: ptb-rise .6s cubic-bezier(.65,0,.35,1) forwards;
+}
+
+.page-transition.is-covering .ptb-b {
+  animation: ptb-rise .6s cubic-bezier(.65,0,.35,1) .12s forwards;
+}
+
+/* ---------- já coberta (página de chegada, antes de revelar) ---------- */
+.page-transition.is-covered .ptb {
+  top: -20vh;
+}
+
+/* ---------- revelando (página de chegada) ---------- */
+.page-transition.is-revealing .ptb-b {
+  animation: ptb-exit .55s cubic-bezier(.65,0,.35,1) forwards;
+}
+
+.page-transition.is-revealing .ptb-a {
+  animation: ptb-exit .55s cubic-bezier(.65,0,.35,1) .12s forwards;
+}
+
+@keyframes ptb-rise {
+  from { top: 100vh; }
+  to   { top: -20vh; }
+}
+
+@keyframes ptb-exit {
+  from { top: -20vh; }
+  to   { top: -160vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition .ptb {
+    animation: none !important;
+  }
+}

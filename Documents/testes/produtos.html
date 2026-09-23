@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos FORJ3D | Catálogo de impressão 3D</title>
+    <meta name="description" content="Catálogo de produtos personalizados em impressão 3D da FORJ3D. Veja preços, fotos e compre pelo WhatsApp.">
+    <link rel="icon" type="image/svg+xml" href="IMG/logo/Logo.svg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Produtos FORJ3D | Catálogo de impressão 3D">
+    <meta property="og:description" content="Catálogo de produtos personalizados em impressão 3D da FORJ3D. Veja preços, fotos e compre pelo WhatsApp.">
+    <meta property="og:image" content="IMG/banner-forj3d.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="CSS/produtos.css">
+    <link rel="stylesheet" href="CSS/watermark.css">
+    <link rel="stylesheet" href="CSS/nav-mobile.css">
+    <link rel="stylesheet" href="CSS/nav-pill.css">
+    <link rel="stylesheet" href="CSS/cart.css">
+    <link rel="stylesheet" href="CSS/whatsapp-float.css">
+    <link rel="stylesheet" href="CSS/instagram-float.css">
+    <link rel="stylesheet" href="CSS/cookie-consent.css">
+    <link rel="stylesheet" href="CSS/page-transition.css">
+    <link rel="stylesheet" href="CSS/liquid-glass.css">
+    <link rel="stylesheet" href="CSS/liquid-metal-button.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="page-transition" id="pageTransition" aria-hidden="true">
+      <span class="ptb ptb-a"></span>
+      <span class="ptb ptb-b"></span>
+    </div>
+    <script>
+      (function () {
+        try {
+          if (sessionStorage.getItem('forj3d_transition') === '1') {
+            document.getElementById('pageTransition').classList.add('is-covered');
+          }
+        } catch (e) { /* sem sessionStorage disponível — segue normal */ }
+      })();
+    </script>
+
+    <div class="watermark-overlay" aria-hidden="true"></div>
+
+    <header id="top">
+
+      <div class="wrap">
+
+        <nav>
+
+          <a href="#top" class="logo display" aria-label="Voltar ao topo">
+            <img src="IMG/logo/Logo_Texto-navbar.png" alt="FORJ3D" class="logo-img">
+          </a>
+
+          <div class="navlinks pill-nav" data-pill-group="produtos-nav">
+            <a href="index.html" class="pill-link js-bubble-transition" data-pill="voltar">
+              <span class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 12H5"/>
+                  <path d="m11 18-6-6 6-6"/>
+                </svg>
+              </span>
+              <span class="pill-label">Voltar</span>
+            </a>
+            <a href="#catalogo" class="pill-link active" data-pill="catalogo">
+              <span class="pill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7" rx="1"/>
+                  <rect x="14" y="3" width="7" height="7" rx="1"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1"/>
+                  <rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+              </span>
+              <span class="pill-label">Catálogo</span>
+            </a>
+          </div>
+
+          <div class="nav-actions">
+
+            <a class="btn btn-accent" href="https://wa.me/5527997941766" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18a7.9 7.9 0 0 1-4.05-1.11l-.29-.17-3.03.79.81-2.95-.19-.3A7.95 7.95 0 1 1 12 20Zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4-.14 0-.3-.02-.46-.02-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/>
+              </svg>
+              <span class="btn-label">Falar no WhatsApp</span>
+            </a>
+
+            <button type="button" class="cart-trigger" data-cart-open aria-label="Abrir carrinho">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.8h8.2a2 2 0 0 0 2-1.6L21 8H6"/>
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="18" cy="21" r="1"/>
+              </svg>
+              <span class="cart-badge" hidden>0</span>
+            </button>
+
+            <button type="button" class="navlinks-mobile-btn" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+              <svg class="ic-burger" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+              <svg class="ic-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M6 6l12 12M18 6L6 18"/>
+              </svg>
+            </button>
+
+          </div>
+
+        </nav>
+
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="wrap mobile-menu-links pill-nav" data-pill-group="produtos-nav">
+          <a href="index.html" class="pill-link js-bubble-transition" data-pill="voltar">
+            <span class="pill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"/>
+                <path d="m11 18-6-6 6-6"/>
+              </svg>
+            </span>
+            <span class="pill-label">Voltar</span>
+          </a>
+          <a href="#catalogo" class="pill-link active" data-pill="catalogo">
+            <span class="pill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+            </span>
+            <span class="pill-label">Catálogo</span>
+          </a>
+        </div>
+      </div>
+
+    </header>
+
+    <main>
+
+      <section class="page-hero">
+
+        <div class="wrap">
+          <img src="IMG/logo/Logo.png" alt="FORJ3D" class="section-icon">
+          <span class="section-tag">
+            catálogo completo
+          </span>
+          <h1 class="display">
+            Produtos
+          </h1>
+          <p>
+            Confira nossos produtos de impressão 3D, personalize, escolha e chame no WhatsApp.
+          </p>
+
+          <div class="search-wrap">
+
+            <span class="search-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7"/>
+                <path d="M21 21l-4.3-4.3"/>
+              </svg>
+            </span>
+
+            <input type="search" id="searchInput" placeholder="Pesquisar produtos..." aria-label="Pesquisar produtos">
+            <button class="search-clear" id="searchClear" aria-label="Limpar pesquisa">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6 6 18M6 6l12 12"/>
+              </svg>
+            </button>
+
+          </div>
+
+          <div class="filters" id="filters" role="tablist" aria-label="Filtrar por categoria"></div>
+
+          <div class="toolbar-row">
+            
+            <label class="sort-wrap">
+              <span class="toolbar-label">Ordenar</span>
+              <select id="sortSelect" aria-label="Ordenar produtos">
+                <option value="relevancia">Relevância</option>
+                <option value="menor-preco">Menor preço</option>
+                <option value="maior-preco">Maior preço</option>
+              </select>
+            </label>
+
+            <div class="price-range">
+
+              <span class="toolbar-label">Faixa de preço</span>
+              <div class="price-range-inputs">
+                <input type="number" id="priceMin" inputmode="decimal" min="0" placeholder="Mín." aria-label="Preço mínimo">
+                <span class="price-range-sep">–</span>
+                <input type="number" id="priceMax" inputmode="decimal" min="0" placeholder="Máx." aria-label="Preço máximo">
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="catalog" id="catalogo">
+
+        <div class="wrap">
+
+          <p class="results-meta" id="resultsMeta"></p>
+          <div class="grid" id="grid"></div>
+
+          <div class="empty-state" id="emptyState">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="M21 21l-4.3-4.3"/>
+            </svg>
+            <h3>
+              Nenhum produto encontrado
+            </h3>
+            <p>
+              Tente pesquisar com outras palavras ou remova o filtro de categoria.
+            </p>
+
+          </div>
+          
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <div class="modal-overlay" id="modalOverlay">
+
+      <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalProductName">
+
+        <button class="modal-close" id="modalClose" aria-label="Fechar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <div class="modal-body">
+
+          <div class="gallery-column">
+
+            <div class="gallery-main" id="galleryMain" tabindex="0" aria-label="Galeria de imagens do produto">
+              <div class="zoom-lens" id="zoomLens" aria-hidden="true"></div>
+              <span class="zoom-hint" id="zoomHint">
+                Passe o mouse para ampliar
+              </span>
+            </div>
+
+            <div class="zoom-preview" id="zoomPreview" aria-hidden="true"></div>
+            <div class="mobile-zoom-note" id="mobileZoomNote">
+              Toque na imagem para ampliar
+            </div>
+            <div class="thumbs" id="galleryThumbs" aria-label="Miniaturas do produto"></div>
+
+          </div>
+
+          <div>
+
+            <span class="p-cat" id="modalCat"></span>
+            <h2 class="p-name display" id="modalProductName"></h2>
+            <div class="p-price" id="modalPrice"></div>
+            <p class="p-desc" id="modalDesc"></p>
+
+            <div class="p-actions">
+
+              <button type="button" class="btn btn-accent p-cta" id="modalAddCart">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.8h8.2a2 2 0 0 0 2-1.6L21 8H6"/>
+                  <circle cx="9" cy="21" r="1"/>
+                  <circle cx="18" cy="21" r="1"/>
+                </svg>
+                Adicionar ao carrinho
+              </button>
+
+              <a class="btn btn-outline p-cta-whats" id="modalWhats" target="_blank" rel="noopener" aria-label="Comprar pelo WhatsApp">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18a7.9 7.9 0 0 1-4.05-1.11l-.29-.17-3.03.79.81-2.95-.19-.3A7.95 7.95 0 1 1 12 20Zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4-.14 0-.3-.02-.46-.02-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/>
+                </svg>
+                WhatsApp
+              </a>
+
+              <button type="button" class="btn btn-outline p-share" id="modalShare" aria-label="Compartilhar produto">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3"/>
+                  <circle cx="6" cy="12" r="3"/>
+                  <circle cx="18" cy="19" r="3"/>
+                  <path d="M8.6 10.5 15.4 6.5M8.6 13.5l6.8 4"/>
+                </svg>
+                <span id="modalShareLabel">
+                  Compartilhar
+                </span>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="related-title">Você também pode gostar</div>
+        <div class="related-grid" id="relatedGrid"></div>
+
+      </div>
+
+    </div>
+
+    <footer>
+
+      <div class="wrap">
+
+        <div class="footer-top">
+
+          <div class="footer-brand">
+
+            <div class="footer-logo display">
+              <a href="#top" aria-label="Voltar ao topo">
+                <img src="IMG/logo/Logo_Texto.png" alt="FORJ3D" class="footer-logo-img">
+              </a>
+            </div>
+
+            <p class="footer-tagline">
+              Impressão 3D que transforma ideias em produtos, feitos sob encomenda.
+            </p>
+
+            <div class="footer-social">
+              <a href="https://wa.me/5527997941766" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18a7.9 7.9 0 0 1-4.05-1.11l-.29-.17-3.03.79.81-2.95-.19-.3A7.95 7.95 0 1 1 12 20Zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4-.14 0-.3-.02-.46-.02-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28Z"/>
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/forj_3d/" target="_blank" rel="noopener" aria-label="Instagram do FORJ3D">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="3" width="18" height="18" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.2" cy="6.8" r="1"/>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+          <div class="footer-col">
+            <h4>Navegação</h4>
+            <ul>
+              <li><a href="#top">Topo da página</a></li>
+              <li><a href="#catalogo">Catálogo</a></li>
+              <li><a href="index.html" class="js-bubble-transition">Home</a></li>
+              <li><a href="index.html#sobre" class="js-bubble-transition">Sobre</a></li>
+              <li><a href="index.html#contato" class="js-bubble-transition">Contato</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Categorias</h4>
+            <ul>
+              <li><a href="produtos.html?categoria=Decoração">Decoração</a></li>
+              <li><a href="produtos.html?categoria=Colecionáveis">Colecionáveis</a></li>
+              <li><a href="produtos.html?categoria=Utilidades">Utilidades</a></li>
+              <li><a href="produtos.html?categoria=Organizadores">Organizadores</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contato</h4>
+            <ul>
+              <li><a href="https://wa.me/5527997941766" target="_blank" rel="noopener">(27) 99794-1766</a></li>
+              <li><a href="https://www.instagram.com/forj_3d/" target="_blank" rel="noopener">@forj_3d</a></li>
+              <li><a href="privacidade.html">Política de Privacidade</a></li>
+              <li><a href="#" onclick="window.forj3dOpenCookiePrefs && window.forj3dOpenCookiePrefs(); return false;">Preferências de cookies</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="foot-bottom">
+          <span>© 2026 FORJ3D. Todos os direitos reservados.</span>
+          <span>Feito com impressão 3D e café.</span>
+        </div>
+
+      </div>
+
+    </footer>
+
+    <script src="JS/nav-mobile.js"></script>
+    <script src="JS/nav-pill.js"></script>
+    <script src="JS/liquid-metal-button.js"></script>
+    <script src="JS/products-data.js"></script>
+    <script src="JS/products-catalog.js"></script>
+    <script src="JS/cookie-consent.js"></script>
+    <script src="JS/cart.js"></script>
+    <script src="JS/produtos.js"></script>
+    <script src="JS/products-effects.js"></script>
+    <script src="JS/whatsapp-float.js"></script>
+    <script src="JS/instagram-float.js"></script>
+    <script src="JS/page-transition.js"></script>
+
+    <script>
+      // O header é "position: sticky", então a âncora nativa "#top"
+      // acha que ele já está no topo e não rola a página. Forçamos
+      // o scroll manualmente nos links da logo (nav e footer).
+      document.querySelectorAll('a[href="#top"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    </script>
+
+  </body>
+</html>

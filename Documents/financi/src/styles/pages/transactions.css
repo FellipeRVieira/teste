@@ -1,0 +1,9 @@
+.filters-bar {
+  display: flex; flex-wrap: wrap; gap: 9px; align-items: center;
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+}
+.filters-bar select {
+  height: 36px; border: 1px solid var(--border); background: var(--surface-alt); color: var(--text);
+  border-radius: 9px; padding: 0 10px; font-size: 10.5px;
+}
+.filters-bar .select-btn { height: 36px; }

@@ -1,0 +1,85 @@
+/* ---------- HERO DA PÁGINA DE PRIVACIDADE ---------- */
+.privacidade-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(600px circle at 15% 0%, rgba(0, 229, 255,0.18), transparent 60%),
+    var(--deep);
+  padding: 72px 0 56px;
+}
+
+.privacidade-hero .eyebrow {
+  color: var(--accent);
+}
+
+.privacidade-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  color: #fff;
+  margin-top: 18px;
+}
+
+.privacidade-hero p {
+  margin-top: 10px;
+  color: rgba(255,255,255,0.65);
+  font-size: 14px;
+}
+
+/* ---------- CONTEÚDO ---------- */
+.privacidade-conteudo {
+  padding: 64px 0 96px;
+}
+
+.privacidade-box {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 44px 48px;
+}
+
+.privacidade-box > p:first-child {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.privacidade-box h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--ink);
+  margin: 32px 0 10px;
+}
+
+.privacidade-box h2:first-of-type {
+  margin-top: 0;
+}
+
+.privacidade-box p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+.privacidade-box a {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.privacidade-box a:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .privacidade-hero h1 {
+    font-size: 30px;
+  }
+  .privacidade-box {
+    padding: 30px 24px;
+  }
+}

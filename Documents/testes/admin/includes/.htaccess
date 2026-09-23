@@ -1,0 +1,4 @@
+# Estes arquivos só existem para serem "incluídos" pelas páginas do
+# painel (require_once) — nunca precisam ser abertos direto pelo
+# navegador. Bloqueamos por completo.
+Require all denied

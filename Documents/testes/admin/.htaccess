@@ -1,0 +1,10 @@
+# Impede listar os arquivos da pasta se alguém acessar sem apontar
+# pra um arquivo específico.
+Options -Indexes
+
+# Os arquivos dentro de includes/ e config.php só servem pra serem
+# "incluídos" pelas páginas do painel — não faz sentido alguém
+# abri-los direto pelo navegador, então bloqueamos isso.
+<FilesMatch "^(config)\.php$">
+  Require all denied
+</FilesMatch>

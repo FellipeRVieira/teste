@@ -1,0 +1,12 @@
+# Esta pasta só deve conter imagens enviadas pelo painel. Mesmo que,
+# por algum bug ou brecha, um arquivo diferente de imagem parasse
+# aqui, estas duas regras garantem que o Apache NUNCA o execute como
+# código — só serve como arquivo estático (imagem, e só).
+
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+
+<FilesMatch "\.(php|php\d?|phtml|phar)$">
+  Require all denied
+</FilesMatch>

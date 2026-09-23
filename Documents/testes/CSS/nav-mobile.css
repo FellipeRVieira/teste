@@ -1,0 +1,121 @@
+/* =========================================================
+   MENU MOBILE — botão hamburger + painel de navegação
+   (compartilhado entre index.html e produtos.html)
+   ========================================================= */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navlinks-mobile-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .2s ease;
+}
+
+.navlinks-mobile-btn:hover {
+  border-color: var(--ink);
+}
+
+.navlinks-mobile-btn .ic-close {
+  display: none;
+}
+
+.navlinks-mobile-btn[aria-expanded="true"] .ic-burger {
+  display: none;
+}
+
+.navlinks-mobile-btn[aria-expanded="true"] .ic-close {
+  display: block;
+}
+
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+  border-bottom: 1px solid transparent;
+  transition: max-height .28s ease, border-color .28s ease;
+}
+
+.mobile-menu.open {
+  max-height: 320px;
+  border-bottom-color: var(--line);
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 20px 18px;
+}
+
+.mobile-menu-links a {
+  padding: 14px 2px;
+  font-size: 15px;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+}
+
+.mobile-menu-links a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu-links a:hover,
+.mobile-menu-links a:active {
+  color: var(--ink);
+}
+
+@media (max-width: 880px) {
+  .navlinks-mobile-btn {
+    display: flex;
+  }
+}
+
+/* Evita que o botão "Falar no WhatsApp" espreme o cabeçalho em telas bem
+   estreitas — some o texto e mantém só o ícone, já que o menu hamburger
+   cobre a navegação nesse ponto. */
+@media (max-width: 400px) {
+  header .btn-accent .btn-label {
+    display: none;
+  }
+
+  header .btn-accent {
+    padding: 10px 12px;
+  }
+
+  nav {
+    gap: 8px;
+  }
+}
+
+/* Respiro vertical menor em telas pequenas: os espaçamentos de 80px/44px
+   pensados para desktop ficam pesados em celulares. */
+@media (max-width: 560px) {
+  section {
+    padding: 56px 0;
+  }
+
+  .hero {
+    padding: 56px 0 44px;
+  }
+
+  .cta-strip {
+    padding: 32px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu {
+    transition: none;
+  }
+}

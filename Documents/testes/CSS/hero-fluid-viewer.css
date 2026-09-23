@@ -1,0 +1,11 @@
+.hero-fluid {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-fluid canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
