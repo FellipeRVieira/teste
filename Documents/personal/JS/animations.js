@@ -3,7 +3,6 @@
 
   const root = document.documentElement;
   const body = document.body;
-  const navbar = document.getElementById('navbar');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Barra de progresso da leitura */
@@ -21,7 +20,6 @@
     const percentage = maxScroll > 0 ? scrollTop / maxScroll : 0;
 
     root.style.setProperty('--scroll-progress', percentage.toFixed(4));
-    navbar?.classList.toggle('is-scrolled', scrollTop > 24);
 
     const hero = document.querySelector('.hero');
     if (hero && !reducedMotion) {
@@ -67,6 +65,65 @@
     });
   }
 
+  /* Parallax multi-camada do hero (scroll + cursor) */
+  const parallaxLayers = [...document.querySelectorAll('[data-parallax-layer]')];
+
+  if (parallaxLayers.length && !reducedMotion) {
+    const state = parallaxLayers.map((el) => ({
+      el,
+      speed: parseFloat(el.dataset.speed) || 0.3,
+      pointerX: 0,
+      pointerY: 0
+    }));
+
+    const heroEl = document.querySelector('.hero');
+    let heroTicking = false;
+
+    const applyLayers = () => {
+      const scrollY = window.scrollY;
+      state.forEach(({ el, speed, pointerX, pointerY }) => {
+        const scrollShift = scrollY * speed * 0.18;
+        el.style.setProperty('--py', `${(scrollShift + pointerY).toFixed(2)}px`);
+        el.style.setProperty('--px', `${pointerX.toFixed(2)}px`);
+      });
+      heroTicking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (heroTicking) return;
+      window.requestAnimationFrame(applyLayers);
+      heroTicking = true;
+    }, { passive: true });
+
+    if (heroEl && window.matchMedia('(pointer: fine)').matches) {
+      let pointerFrame = null;
+      heroEl.addEventListener('pointermove', (event) => {
+        const rect = heroEl.getBoundingClientRect();
+        const relX = (event.clientX - rect.left) / rect.width - 0.5;
+        const relY = (event.clientY - rect.top) / rect.height - 0.5;
+
+        cancelAnimationFrame(pointerFrame);
+        pointerFrame = requestAnimationFrame(() => {
+          state.forEach((layer) => {
+            layer.pointerX = relX * layer.speed * -40;
+            layer.pointerY = relY * layer.speed * -40;
+          });
+          applyLayers();
+        });
+      });
+
+      heroEl.addEventListener('pointerleave', () => {
+        state.forEach((layer) => {
+          layer.pointerX = 0;
+          layer.pointerY = 0;
+        });
+        applyLayers();
+      });
+    }
+
+    applyLayers();
+  }
+
   /* Movimento de profundidade para imagens */
   if (!reducedMotion) {
     const parallaxItems = document.querySelectorAll('.about__media img, .about__media video, .service-card img, .experience__item img');
@@ -107,9 +164,9 @@
     }, { passive: true });
   }
 
-  /* Destaque automático do item da navegação */
+  /* Destaque automático do item ativo no menu rápido do hero */
   const sections = [...document.querySelectorAll('main section[id]')];
-  const links = [...document.querySelectorAll('.nav-links a')];
+  const links = [...document.querySelectorAll('.hero__quicklinks a, .nav-links a')];
 
   if ('IntersectionObserver' in window && sections.length && links.length) {
     const sectionObserver = new IntersectionObserver((entries) => {

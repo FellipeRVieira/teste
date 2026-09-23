@@ -1,44 +1,40 @@
 (() => {
   'use strict';
 
+  const year = document.querySelector('[data-current-year]');
+  if (year) year.textContent = new Date().getFullYear();
+})();
+
+/* ---------- Navbar: estado ao rolar + menu mobile ---------- */
+(() => {
+  'use strict';
+
   const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
   const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
+  const navLinks = navbar.querySelectorAll('.nav-links a');
+
+  const updateScrolledState = () => {
+    navbar.classList.toggle('is-scrolled', window.scrollY > 12);
+  };
+
+  updateScrolledState();
+  window.addEventListener('scroll', updateScrolledState, { passive: true });
 
   const closeMenu = () => {
-    navbar?.classList.remove('is-open');
+    navbar.classList.remove('is-open');
     navToggle?.classList.remove('is-open');
     navToggle?.setAttribute('aria-expanded', 'false');
     navToggle?.setAttribute('aria-label', 'Abrir menu');
   };
 
   navToggle?.addEventListener('click', () => {
-    const isOpen = navbar?.classList.toggle('is-open') ?? false;
+    const isOpen = navbar.classList.toggle('is-open');
     navToggle.classList.toggle('is-open', isOpen);
     navToggle.setAttribute('aria-expanded', String(isOpen));
     navToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
   });
 
-  navLinks?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  document.addEventListener('click', (event) => {
-    if (!navbar?.classList.contains('is-open')) return;
-    if (!navbar.contains(event.target)) closeMenu();
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && navbar?.classList.contains('is-open')) {
-      closeMenu();
-      navToggle?.focus();
-    }
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) closeMenu();
-  });
-
-  const year = document.querySelector('[data-current-year]');
-  if (year) year.textContent = new Date().getFullYear();
+  navLinks.forEach((link) => link.addEventListener('click', closeMenu));
 })();
